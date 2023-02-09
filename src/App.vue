@@ -1,3 +1,6 @@
+
+import TarefaLista from './components/TarefaLista.vue';
+
 <template>
   <div id="app">
     <div class="jumbotron jumbotron-fluid">
@@ -8,7 +11,17 @@
     </div>
 
     <div class="container">
-    
+      <TarefaLista />
     </div>
   </div>
 </template>
+
+<script>
+import TarefaLista from './components/TarefaLista.vue';
+
+export default {
+  components: {
+    TarefaLista
+  }
+}
+</script>
