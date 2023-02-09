@@ -18,6 +18,7 @@
                 :key="tarefa.if"
                 :tarefa="tarefa"
                 @editar="selecionaTarefaEditar"
+                @deletar="deletarTarefa"
             />
         </ul>
 
@@ -80,6 +81,17 @@ export default {
         resetar() {
             this.tarefaSelecionada = undefined;
             this.exibirFormulario = false;
+        },
+        deletarTarefa(tarefa) {
+            const confirmar = window.confirm(`Deseja realmente deletar a tarefa ${tarefa.titulo} ?`);
+            if(confirmar) {
+                axios.delete(`${config.apiURL}/tarefas/${tarefa.id}`)
+                    // eslint-disable-next-line no-unused-vars
+                    .then(_response => {
+                        const indice = this.tarefas.findIndex(t => t.id === tarefa.id);
+                        this.tarefas.splice(indice, 1);
+                    }) 
+            }
         }
     }
 }

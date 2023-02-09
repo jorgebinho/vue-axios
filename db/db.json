@@ -16,11 +16,6 @@
       "id": 3
     },
     {
-      "titulo": "Aprender VueX",
-      "concluido": false,
-      "id": 4
-    },
-    {
       "titulo": "Aprender Pinia",
       "concluido": false,
       "id": 5
