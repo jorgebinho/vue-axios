@@ -6,6 +6,7 @@
             class="btn btn-sm mr-4" 
             :class="classeCSS" 
             :title="tituloBotaoConcluido"
+            @click="concluirTarefa"
         >
             <i class="fa fa-check"/>
         </button>
@@ -43,6 +44,11 @@ export default {
         },
         tituloBotaoConcluido() {
             return this.tarefa.concluido ? 'Refazer Tarefa' : 'Concluir Tarefa'
+        }
+    },
+    methods: {
+        concluirTarefa() {
+            this.$emit('concluir', Object.assign({}, this.tarefa, { concluido: !this.tarefa.concluido}));
         }
     }
 }
