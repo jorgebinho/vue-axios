@@ -11,9 +11,9 @@
       "concluido": true
     },
     {
-      "id": 3,
-      "titulo": "Aprender Axios",
-      "concluido": false
+      "titulo": "Aprender Axios ",
+      "concluido": false,
+      "id": 3
     },
     {
       "titulo": "Aprender VueX",
@@ -24,6 +24,11 @@
       "titulo": "Aprender Pinia",
       "concluido": false,
       "id": 5
+    },
+    {
+      "titulo": "Aprender Vuetify",
+      "concluido": false,
+      "id": 6
     }
   ]
 }

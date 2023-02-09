@@ -17,6 +17,7 @@
                 v-for="tarefa in tarefas"
                 :key="tarefa.if"
                 :tarefa="tarefa"
+                @editar="selecionaTarefaEditar"
             />
         </ul>
 
@@ -24,7 +25,9 @@
 
         <TarefaSalvar 
             v-if="exibirFormulario"
+            :tarefa="tarefaSelecionada"
             @criar="criarTarefa"
+            @editar="editarTarefa"
         />
     </div>
 </template>
@@ -44,7 +47,8 @@ export default {
     data() {
         return {
             tarefas: [],
-            exibirFormulario: false
+            exibirFormulario: false,
+            tarefaSelecionada: undefined
         }
     },
     created() {
@@ -58,8 +62,24 @@ export default {
             axios.post(`${config.apiURL}/tarefas`, tarefa)
                 .then((response) => {
                     this.tarefas.push(response.data);
-                    this.exibirFormulario = false;
+                    this.resetar();
                 })
+        },
+        selecionaTarefaEditar(tarefa) {
+            this.tarefaSelecionada = tarefa;
+            this.exibirFormulario = true;
+        },
+        editarTarefa(tarefa) {
+            axios.put(`${config.apiURL}/tarefas/${tarefa.id}`, tarefa)
+                .then(response => {
+                    const indice = this.tarefas.findIndex(t => t.id === tarefa.id);
+                    this.tarefas.splice(indice, 1, response.data);
+                    this.resetar();
+                })
+        },
+        resetar() {
+            this.tarefaSelecionada = undefined;
+            this.exibirFormulario = false;
         }
     }
 }
