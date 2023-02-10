@@ -12,17 +12,17 @@
     },
     {
       "titulo": "Aprender Axios ",
-      "concluido": false,
+      "concluido": true,
       "id": 3
     },
     {
       "titulo": "Aprender Pinia",
-      "concluido": false,
+      "concluido": true,
       "id": 5
     },
     {
       "titulo": "Aprender Vuetify",
-      "concluido": false,
+      "concluido": true,
       "id": 6
     }
   ]

@@ -38,8 +38,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-import config from './../../config/config.js';
+import axios from '../axios'
 
 import TarefaSalvar from './TarefaSalvar.vue';
 import TarefasListaItem from './TarefasListaItem.vue';
@@ -72,7 +71,7 @@ export default {
         }
     },
     created() {
-        axios.get(`${config.apiURL}/tarefas`)
+        axios.get(`/tarefas`)
             .then((response) => {
                 this.tarefas = response.data;
             }).catch(error => {
@@ -87,7 +86,7 @@ export default {
     },
     methods: {
         criarTarefa(tarefa) {
-            axios.post(`${config.apiURL}/tarefas`, tarefa)
+            axios.post(`/tarefas`, tarefa)
                 .then((response) => {
                     this.tarefas.push(response.data);
                     this.resetar();
@@ -98,7 +97,7 @@ export default {
             this.exibirFormulario = true;
         },
         editarTarefa(tarefa) {
-            axios.put(`${config.apiURL}/tarefas/${tarefa.id}`, tarefa)
+            axios.put(`/tarefas/${tarefa.id}`, tarefa)
                 .then(response => {
                     const indice = this.tarefas.findIndex(t => t.id === tarefa.id);
                     this.tarefas.splice(indice, 1, response.data);
@@ -112,7 +111,7 @@ export default {
         deletarTarefa(tarefa) {
             const confirmar = window.confirm(`Deseja realmente deletar a tarefa ${tarefa.titulo} ?`);
             if(confirmar) {
-                axios.delete(`${config.apiURL}/tarefas/${tarefa.id}`)
+                axios.delete(`/tarefas/${tarefa.id}`)
                     // eslint-disable-next-line no-unused-vars
                     .then(_response => {
                         const indice = this.tarefas.findIndex(t => t.id === tarefa.id);
