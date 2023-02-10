@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import axios from '../axios'
+import axios from '../../axios'
 
 import TarefaSalvar from './TarefaSalvar.vue';
 import TarefasListaItem from './TarefasListaItem.vue';
